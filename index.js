@@ -46,7 +46,6 @@ app.post('/api/mahasiswa', (req, res) => {
     if (!nama || !nim || !kelas || !prodi) {
         return res.status(400).json({ error: 'fill it all'});
     }
-    
     db.query('INSERT INTO mahasiswa (nama, nim, kelas, prodi) VALUES (?, ?, ?, ?)', [nama, nim, kelas, prodi], (err, result) => {
         if (err) {
             console.error('>:C Error inserting mahasiswa data:', err);
@@ -60,7 +59,6 @@ app.post('/api/mahasiswa', (req, res) => {
 app.put('/api/mahasiswa/:id', (req, res) => {
     const { id } = req.params;
     const { nama, nim, kelas, prodi } = req.body;
-
     db.query('UPDATE mahasiswa SET nama = ?, nim = ?, kelas = ?, prodi = ? WHERE id = ?', [nama, nim, kelas, prodi, id], (err, result) => {
         if (err) {
             console.error('>:C Error updating mahasiswa data:', err);
@@ -73,7 +71,6 @@ app.put('/api/mahasiswa/:id', (req, res) => {
 
 app.delete('/api/mahasiswa/:id', (req, res) => {
     const { id } = req.params;
-
     db.query('DELETE FROM mahasiswa WHERE id = ?', [id], (err, result) => {
         if (err) {
             console.error('>:C Error deleting mahasiswa data:', err);
