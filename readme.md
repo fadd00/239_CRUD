@@ -1,11 +1,13 @@
-# get
+# tugas
+
+## get
 ![get](eses/image.png)
 
-# post
+## post
 ![post](eses/image-1.png)
 
-# put 
+## put 
 ![put](eses/image-2.png)
 
-# delete
+## delete
 ![delete](eses/image-3.png)
