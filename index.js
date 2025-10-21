@@ -56,3 +56,30 @@ app.post('/api/mahasiswa', (req, res) => {
         res.status(201).json({ message: 'Data added successfully', id: result.insertId });
     });
 });
+
+app.put('/api/mahasiswa/:id', (req, res) => {
+    const { id } = req.params;
+    const { nama, nim, kelas, prodi } = req.body;
+
+    db.query('UPDATE mahasiswa SET nama = ?, nim = ?, kelas = ?, prodi = ? WHERE id = ?', [nama, nim, kelas, prodi, id], (err, result) => {
+        if (err) {
+            console.error('>:C Error updating mahasiswa data:', err);
+            res.status(500).json({ error: 'Internal Server Error' });
+            return;
+        }
+        res.json({ message: 'Data updated successfully' });
+    });
+});
+
+app.delete('/api/mahasiswa/:id', (req, res) => {
+    const { id } = req.params;
+
+    db.query('DELETE FROM mahasiswa WHERE id = ?', [id], (err, result) => {
+        if (err) {
+            console.error('>:C Error deleting mahasiswa data:', err);
+            res.status(500).json({ error: 'Internal Server Error' });
+            return;
+        }
+        res.json({ message: 'Data deleted successfully' });
+    });
+});
